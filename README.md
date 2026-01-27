@@ -14,6 +14,8 @@ The above working versions are incomplete as they only support 1 controller with
 - 2 valve unit per controller
 - scheduling
 - humidity senor
- 
+
+# Requirements
+The project requires DNS sppofing to direct the two urls, ws.pusherapp.com and wifiaquatimer.com to the server running the service
 #TODO:
 - write code :)
