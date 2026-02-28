@@ -92,6 +92,13 @@ Server -> Client (over websocket)
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |2 bytes|38 bytes|38 bytes|38 bytes|38 bytes|2 bytes|38 bytes|38 bytes|38 bytes|38 bytes|
 
+
+Valve [1..4]
+|Period 1|Period 2|Period 3|Period 4|Period 5|Period 6|Rain Delay|User Sensor|
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|6 bytes|6 bytes|6 bytes|6 bytes|6 bytes||6 bytes|1 byte|1 byte|
+
+
 Client -> Server
 ~~~
 GET /submit/?idhash=5b433cbc37&message=ascii--Day0scheduleevnt--ack--null HTTP/1.1
@@ -108,6 +115,9 @@ Server -> Client (over websocket)
 ~~~
 {"event":"manual_sched","data":"\"Ld0AAAAAAAAAAAAAAAAAAAAA\"","channel":"d88039ae13d7"}
 ~~~
+
+
+
 Client -> Server
 ~~~
 GET /submit/?idhash=5b433cbc37&message=ascii--manualctrlevnt--ack--null HTTP/1.1
