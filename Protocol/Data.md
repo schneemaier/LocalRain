@@ -167,22 +167,19 @@ Server will send a websocket keep alive every 200 seconds
 Message format
 =============
 ~~~
-1xOuOYDYAwDQAS3dAP8AAgAAAAAAAg==
+Example: 1xOuOYDYAwDQAS3dAP8AAgAAAAAAAg==
 ~~~
 base64url decode
 ~~~
 d7 13 ae 39 80 d8 03 00 d0 01 2d dd 00 ff 00 02 00 00 00 00 00 02
-[---<RfSerial>--][DW][?][-MM-][VaI][BB][BA][ST]<-Humidity Sensor->
+[---<RfSerial>--][DW][?][-MM-][Val1][BB][BA][ST][Val2][BB][BA][ST]
 
 DW: Day of week (0 sunday, sathurday 6)
-VaI: Valve Id (ex: DD2D under the Valve)
+Valx: Valve Id (ex: DD2D under the Valve)
 MM: minutes since the start of the day ex: d0 01 -> 01 d0 -> 464 7h44
 BB: binary mask (0x1 button 1, 0x2 button 2, 0x4 button 3, 0x8 button 4) (0x11 web valve 1, 0x22 web valve 2, 0x44 web valve 3, 0x88 valve 4)
 BA: Battery FF = 99%, FE = 98% FD=97%  FC = 95% F7 = 88%   F2= 80% ED = 73%
-
-
-18
-ST: Status 00: Connecté 01: Valve non-connecté... 02: Déconnecté depuis + de 5 minutes
+ST: Status 00: Connected 01: Not connected 02: disconnected for more than 5 minutes
 ~~~
 
 Websocket message
@@ -191,9 +188,7 @@ Websocket message
 {"event":"manual_sched","data":"\"Ld0AAAAAmgWaBQAAAAAAAAAA\"","channel":"d88039ae13d7"}
 2d dd 00 00 00 00 9a 05 9a 05 00 00 00 00 00 00 00 00
 
+[Val1][-V1-][-V2-][-V3-][-V4-][Val2][-V1-][-V2-][-V3-][-V4-]
 
-
-[VaId][-V1-][-V2-][-V3-][-V4-][---Multiple valve??---]
-
-VaId: Valve Id (ex: DD2D under the Valve)
+Val: Valve Id (ex: DD2D under the Valve)
 V#: 00 00 valve is closed
