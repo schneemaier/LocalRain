@@ -96,7 +96,7 @@ Server -> Client (over websocket)
 Valve [1..4]
 |Period 1|Period 2|Period 3|Period 4|Period 5|Period 6|Rain Delay|User Sensor|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-|6 bytes|6 bytes|6 bytes|6 bytes|6 bytes||6 bytes|1 byte|1 byte|
+|6 bytes|6 bytes|6 bytes|6 bytes|6 bytes|6 bytes|1 byte|1 byte|
 
 
 Client -> Server
