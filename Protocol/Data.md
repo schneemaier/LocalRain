@@ -86,6 +86,8 @@ Server -> Client (over websocket)
 
 |Valve Unit 1|Valve Unit 2|
 |:---:|:---:|
+|154 bytes|154 bytes|
+
 |Unit ID 1|Valve 1|Valve 2|Valve 3|Valve 4|Unit ID 2|Valve 1|Valve 2|Valve 3|Valve 4|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |2 bytes|38 bytes|38 bytes|38 bytes|38 bytes|2 bytes|38 bytes|38 bytes|38 bytes|38 bytes|
