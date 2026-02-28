@@ -84,6 +84,12 @@ Server -> Client (over websocket)
 {"event":"sched_day0","data":"\"Ld0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=\"","channel":"d88039ae13d7"}
 ~~~
 
+|Valve Unit 1|Valve Unit 2|
+|:---:|:---:|
+|Unit ID 1|Valve 1|Valve 2|Valve 3|Valve 4|Unit ID 2|Valve 1|Valve 2|Valve 3|Valve 4|
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|2 bytes|38 bytes|38 bytes|38 bytes|38 bytes|2 bytes|38 bytes|38 bytes|38 bytes|38 bytes|
+
 Client -> Server
 ~~~
 GET /submit/?idhash=5b433cbc37&message=ascii--Day0scheduleevnt--ack--null HTTP/1.1
@@ -172,6 +178,9 @@ Websocket message
 ~~~
 {"event":"manual_sched","data":"\"Ld0AAAAAmgWaBQAAAAAAAAAA\"","channel":"d88039ae13d7"}
 2d dd 00 00 00 00 9a 05 9a 05 00 00 00 00 00 00 00 00
+
+
+
 [VaId][-V1-][-V2-][-V3-][-V4-][---Multiple valve??---]
 
 VaId: Valve Id (ex: DD2D under the Valve)
