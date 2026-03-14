@@ -1,0 +1,16 @@
+{
+  "data": [
+    {
+      "controllerMac": "d88039ae5761",
+      "valveUnits": ["DE2B", "AFDB"]
+    },
+    {
+      "controllerMac": "5410ec28c59f",
+      "valveUnits": ["F623", "F84E"]
+    },
+    {
+      "controllerMac": "5410ec28ed23",
+      "valveUnits": ["0000", "0000"]
+    }
+  ]
+}
