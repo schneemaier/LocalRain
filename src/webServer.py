@@ -114,7 +114,7 @@ def update_states(bin_state, remote_id):
 
 async def send_message(event, data, channel_id=None):
     global channels
-    if channel_id is None:chann
+    if channel_id is None:
         ws_logger.debug(f"Channel is none")
     ws_logger.debug(f"Channel {channel_id}")
     if channel_id and channel_id in channels:
