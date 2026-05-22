@@ -1,0 +1,1262 @@
+{
+  "data": [
+    {
+      "valveUnit": "ABCD",
+      "schedule": [
+        {
+          "day": 0,
+          "valve1": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ],
+          "valve2": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ],
+          "valve3": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ],
+          "valve4": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ]
+        },
+        {
+          "day": 1,
+          "valve1": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ],
+          "valve2": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ],
+          "valve3": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ],
+          "valve4": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "valve1": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ],
+          "valve2": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ],
+          "valve3": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ],
+          "valve4": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "valve1": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ],
+          "valve2": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ],
+          "valve3": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ],
+          "valve4": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "valve1": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ],
+          "valve2": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ],
+          "valve3": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ],
+          "valve4": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "valve1": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ],
+          "valve2": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ],
+          "valve3": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ],
+          "valve4": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ]
+        },
+        {
+          "day": 6,
+          "valve1": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ],
+          "valve2": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ],
+          "valve3": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ],
+          "valve4": [
+            {
+              "period": 1,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 2,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 3,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 4,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 5,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            },
+            {
+              "period": 6,
+              "start": 0,
+              "stop": 0,
+              "ecoOn": 0,
+              "ecoOff": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

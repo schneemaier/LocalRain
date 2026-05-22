@@ -2,15 +2,24 @@
   "data": [
     {
       "controllerMac": "d88039ae5761",
-      "valveUnits": ["DE2B", "AFDB"]
+      "valveUnits": [
+        "F84E",
+        "B510"
+      ]
     },
     {
       "controllerMac": "5410ec28c59f",
-      "valveUnits": ["F623", "F84E"]
+      "valveUnits": [
+        "F623",
+        "DE2B"
+      ]
     },
     {
       "controllerMac": "5410ec28ed23",
-      "valveUnits": ["0000", "0000"]
+      "valveUnits": [
+        "0000",
+        "0000"
+      ]
     }
   ]
 }

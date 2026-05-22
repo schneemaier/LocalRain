@@ -137,8 +137,8 @@ async def send_message(event, data, channel_id=None):
                 ws_logger.debug(f"Sending message: {event} to broadcast")
                 await ws_client.send_str(payload1)
 
-async def send_raw_message(msg):
-    channel_id = settings.mac1.lower() #test
+async def send_raw_message(channel_id, msg):
+    #channel_id = settings.mac1.lower() #test
     if channel_id in channels:
         ws_client = channels[channel_id]
         if not ws_client.closed:
@@ -230,7 +230,7 @@ async def msg_manual_sched(channel_arg, mode, valveUnit = None, valve = None, ti
     }
 
     ws_logger.debug(f"Constructed msg : {json.dumps(ev, separators=(',', ':'))}")
-    await send_raw_message(json.dumps(ev, separators=(',', ':')))
+    await send_raw_message(channel_arg, json.dumps(ev, separators=(',', ':')))
     return True
 
 async def msg_sched_day(day, channel):
@@ -313,7 +313,7 @@ async def check_timeout(remote_id):
     now = datetime.now()
     minutes_of_day = now.hour * 60 + now.minute
     time_stamp[remote_id] = int(minutes_of_day)
-    logger.debug(f"Watchdog: {remote_id} time:{time_stamp[remote_id]}/{remote_stamp[remote_id]}")
+    logger.debug(f"Watchdog: {remote_id} time:{time_stamp[remote_id]}/{remote_stamp[remote_id]} {int(time_stamp[remote_id]/60)}:{time_stamp[remote_id]-60*int(time_stamp[remote_id]/60)}")
     valves = reported_valves[remote_id]
     try:
         for vid in valves:
@@ -463,6 +463,8 @@ async def handle_submit(request):
         for con in connection:
             if connection[con] == 0:
                 logger.info(f'Valve {con}  online with controller ({remote_id})')
+            elif connection[con] == 1:
+                logger.info(f'Valve {con} offline with controller ({remote_id}) < 5 minutes')
             else:
                 logger.info(f'Valve {con} offline with controller ({remote_id})')
     elif remote_id == '000000000000':

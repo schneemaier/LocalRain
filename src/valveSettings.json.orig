@@ -1,0 +1,11 @@
+{
+  "data": [
+    {
+      "controllerMac": "macaddress",
+      "valveUnits": [
+        "ABCD",
+        "EFGH"
+      ]
+    },
+  ]
+}
