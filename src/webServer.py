@@ -412,7 +412,7 @@ async def handle_submit(request):
     if sm[remote_id] == 7:
         if remote_id in time_stamp:
             logger.debug(f'Canceling time task for {remote_id}')
-            time_stamp[remote_id].pop()
+            time_stamp.pop(remote_id)
             # tv[remote_id].cancel()
         #tv[remote_id] = asyncio.create_task(timestamp_loop(remote_id))
         await timestamp_loop(remote_id)
