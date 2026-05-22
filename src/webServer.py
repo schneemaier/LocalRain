@@ -410,10 +410,12 @@ async def handle_submit(request):
         return web.Response(text='OK')
 
     if sm[remote_id] == 7:
-        if remote_id in tv:
+        if remote_id in time_stamp:
             logger.debug(f'Canceling time task for {remote_id}')
-            tv[remote_id].cancel()
-        tv[remote_id] = asyncio.create_task(timestamp_loop(remote_id))
+            time_stamp[remote_id].pop()
+            # tv[remote_id].cancel()
+        #tv[remote_id] = asyncio.create_task(timestamp_loop(remote_id))
+        await timestamp_loop(remote_id)
         sm[remote_id] += 1
         return web.Response(text='OK')
 
@@ -422,7 +424,7 @@ async def handle_submit(request):
         sm[remote_id] += 1
         return web.Response(text='OK')
 
-    # mannual schedule needs to be added back to have the valce valuse in the system, but this requires
+    # manual schedule needs to be added back to have the valve values in the system, but this requires
     # the function to be fixed and handle the valve units
     if sm[remote_id] == 9:
         # add remote id
@@ -432,11 +434,11 @@ async def handle_submit(request):
 
     if sm[remote_id] == 10:
         # iv has to be per remote id
-        if remote_id in iv:
-            logger.info(f'Canceling watchdog task {remote_id}')
-            iv[remote_id].cancel()
+        #if remote_id in iv:
+        #    logger.info(f'Canceling watchdog task {remote_id}')
+        #    iv[remote_id].cancel()
         # Start watchdog loop
-        iv[remote_id] = asyncio.create_task(watchdog_loop(remote_id))
+        #iv[remote_id] = asyncio.create_task(watchdog_loop(remote_id))
         sm[remote_id] += 1
 
     #if message.startswith('ascii--revisions--E400'):
@@ -458,7 +460,7 @@ async def handle_submit(request):
     if remote_id in valveSettings.controllerMac:
         logger.debug(f'remoteID ({remote_id}) in controllerMac')
         update_states(bin_state, remote_id) # update to multi device
-        # this part doed not make sence in current form
+        # this part does not make sense in current form
         connection = connection_state[remote_id]
         for con in connection:
             if connection[con] == 0:
@@ -538,10 +540,23 @@ async def websocket_handler(request):
                 ws_connected[ch] = False
                 sm[ch] = 0
                 tv[ch].cancel()
-
-
         ws_logger.info(f'Websocket connection closed for {ch}')
     return ws
+
+async def all_timestamp_loop():
+    global time_stamp
+    global channels
+    logger.info(f'Global time stamp loop starting')
+    while True:
+        now = datetime.now()
+        minutes_of_day = now.hour * 60 + now.minute
+        if len(time_stamp) != 0:
+            logger.info(f'Sending timestamps')
+            for key in channels:
+                channels[key] = minutes_of_day
+                await msg_timestamp(minutes_of_day, now.weekday(), key)
+        # send timestamp every 30 miuntes for all connected devices
+        await asyncio.sleep(1800 - datetime.now().second)
 
 async def timestamp_loop(remote_id):
     global time_stamp
@@ -549,14 +564,22 @@ async def timestamp_loop(remote_id):
     minutes_of_day = now.hour * 60 + now.minute
     time_stamp[remote_id] = minutes_of_day
     await msg_timestamp(minutes_of_day, now.weekday(), remote_id)
-    while True:
+    # while True:
         # send time syncronization every 30 minutes
-        await asyncio.sleep(1800 - datetime.now().second)
-        now = datetime.now()
-        minutes_of_day = now.hour * 60 + now.minute
-        time_stamp[remote_id] = minutes_of_day
-        await msg_timestamp(minutes_of_day, now.weekday(), remote_id)
+        # await asyncio.sleep(1800 - datetime.now().second)
+        # now = datetime.now()
+        # minutes_of_day = now.hour * 60 + now.minute
+        # time_stamp[remote_id] = minutes_of_day
+        # await msg_timestamp(minutes_of_day, now.weekday(), remote_id)
 
+async def all_watchdog_loop():
+    global time_stamp
+    logger.info(f'Global watchdog loop starting')
+    while True:
+        await asyncio.sleep(60)
+        if len(time_stamp) != 0:
+            for key in time_stamp:
+                await check_timeout(key)
 
 async def watchdog_loop(remote_id):
     while True:
@@ -593,6 +616,8 @@ async def start_web_server():
     await runner.setup()
     site = web.TCPSite(runner, '0.0.0.0', settings.port)
     await site.start()
+    asyncio.create_task(all_timestamp_loop())
+    asyncio.create_task(all_watchdog_loop())
     logger.info(f"Web server started on port {settings.port}")
     return runner, app
 
