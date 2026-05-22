@@ -552,13 +552,13 @@ async def all_timestamp_loop():
         minutes_of_day = now.hour * 60 + now.minute
         if len(time_stamp) != 0:
             sleeptime = 180
-            logger.info(f'Sending timestamps')
+           # logger.info(f'Sending timestamps')
             for key in channels:
-                channels[key] = minutes_of_day
+                time_stamp[key] = minutes_of_day
                 await msg_timestamp(minutes_of_day, now.weekday(), key)
         else:
             sleeptime = 60
-        # send timestamp every 30 miuntes for all connected devices
+        # send timestamp every 30 minutes for all connected devices
         await asyncio.sleep(sleeptime - datetime.now().second)
 
 async def timestamp_loop(remote_id):
@@ -583,7 +583,7 @@ async def all_watchdog_loop():
         await asyncio.sleep(60)
         if len(time_stamp) != 0:
             for key in time_stamp:
-                logger.info(f'Global watchdog loop {f}', key)
+                # logger.info(f'Global watchdog loop {key}')
                 await check_timeout(key)
 
 async def watchdog_loop(remote_id):
