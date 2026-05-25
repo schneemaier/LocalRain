@@ -562,7 +562,7 @@ async def all_timestamp_loop():
         now = datetime.now()
         minutes_of_day = now.hour * 60 + now.minute
         if len(time_stamp) != 0:
-            sleeptime = 1800
+            sleeptime = 7200
            # logger.info(f'Sending timestamps')
             for key in channels:
                 time_stamp[key] = minutes_of_day
