@@ -313,7 +313,8 @@ async def check_timeout(remote_id):
     now = datetime.now()
     minutes_of_day = now.hour * 60 + now.minute
     time_stamp[remote_id] = int(minutes_of_day)
-    logger.debug(f"Watchdog: {remote_id} time:{time_stamp[remote_id]}/{remote_stamp[remote_id]} {int(time_stamp[remote_id]/60)}:{time_stamp[remote_id]-60*int(time_stamp[remote_id]/60)}")
+    # logger.debug(f"Watchdog: {remote_id} time:{time_stamp[remote_id]}/{remote_stamp[remote_id]} {int(time_stamp[remote_id]/60)}:{time_stamp[remote_id]-60*int(time_stamp[remote_id]/60)}")
+    pretxt = f"Watchdog: {remote_id} time:{time_stamp[remote_id]}/{remote_stamp[remote_id]} {int(time_stamp[remote_id]/60)}:{100+time_stamp[remote_id]-60*int(time_stamp[remote_id]/60)}"[-2:]
     valves = reported_valves[remote_id]
     try:
         for vid in valves:
@@ -327,7 +328,8 @@ async def check_timeout(remote_id):
                     reported_valves[remote_id][vid][i] = reported_valves[remote_id][vid][i] - 1
                 else:
                     dbg += f"V{i}:OFF "
-            logger.debug(f"{remote_id} VALVES {dbg}")
+            # logger.debug(f"{remote_id} VALVES {dbg}")
+            logger.debug(f"{pretxt} VALVES {dbg}")
     except Exception as e:
         logger.error(f"Error in watchdog loop: {e}")
 
@@ -579,7 +581,7 @@ async def all_watchdog_loop():
     global time_stamp
     logger.info(f'Global watchdog loop starting')
     while True:
-        # logger.info(f'Global watchdog loop')
+        logger.info("Global watchdog loop")
         await asyncio.sleep(60)
         if len(time_stamp) != 0:
             for key in time_stamp:
