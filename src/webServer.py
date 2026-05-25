@@ -82,6 +82,7 @@ def update_states(bin_state, remote_id):
     unit.append(hex(bin_state[bin_fields['UNIT_ID_HIGH_2']])[2:] + hex(bin_state[bin_fields['UNIT_ID_LOW_2']])[2:])
     battery1 = bin_state[bin_fields['BATTERY_1']]
     battery2 = bin_state[bin_fields['BATTERY_2']]
+    # add watersensor data
     if int(unit[0],16) != 0:
         battery[unit[0]] = battery1 * 1.4428 - 268
         connection[unit[0]] = bin_state[bin_fields['STATE_1']]
