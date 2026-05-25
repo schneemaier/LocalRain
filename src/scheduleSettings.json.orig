@@ -2,6 +2,10 @@
   "data": [
     {
       "valveUnit": "ABCD",
+      "valve1sensor": 0,
+      "valve2sensor": 0,
+      "valve3sensor": 0,
+      "valve4sensor": 0,
       "schedule": [
         {
           "day": 0,

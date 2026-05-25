@@ -189,9 +189,7 @@ async def send_long_message(event, data, channel_id=None):
 
 async def msg_manual_sched(channel_arg, mode, valveUnit = None, valve = None, time = None):
     global time_stamp, reported_valves
-    logger.info(f"Manual schedule for {channel_arg} valveUnit {valveUnit} valve {valve} time {time}")
     dbg = ''
-
     buffer = bytearray(20)
 
     if mode == "start":

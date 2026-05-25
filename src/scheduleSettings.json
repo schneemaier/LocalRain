@@ -2,6 +2,10 @@
   "data": [
     {
       "valveUnit": "DE2B",
+      "valve1sensor": 0,
+      "valve2sensor": 0,
+      "valve3sensor": 0,
+      "valve4sensor": 0,
       "schedule": [
         {
           "day": 0,
@@ -1260,6 +1264,10 @@
     },
     {
       "valveUnit": "B510",
+      "valve1sensor": 0,
+      "valve2sensor": 0,
+      "valve3sensor": 0,
+      "valve4sensor": 0,
       "schedule": [
         {
           "day": 0,
@@ -2518,6 +2526,10 @@
     },
     {
       "valveUnit": "F623",
+      "valve1sensor": 0,
+      "valve2sensor": 0,
+      "valve3sensor": 0,
+      "valve4sensor": 0,
       "schedule": [
         {
           "day": 0,
@@ -3776,6 +3788,10 @@
     },
     {
       "valveUnit": "F84E",
+      "valve1sensor": 0,
+      "valve2sensor": 0,
+      "valve3sensor": 0,
+      "valve4sensor": 0,
       "schedule": [
         {
           "day": 0,
