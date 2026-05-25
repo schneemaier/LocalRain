@@ -7,7 +7,9 @@ class valveSettings:
         self.controllerMac = []
         self.valveUnits = {}
         self.schedule = {}
+        self.loadConf(valveSettings_path, scheduleSettings_path)
 
+    def loadConf(self, valveSettings_path='valveSettings.json', scheduleSettings_path='scheduleSettings.json'):
         if os.path.exists(valveSettings_path):
             with (open(valveSettings_path, 'r') as f):
                 vs = json.load(f)
@@ -31,6 +33,38 @@ class valveSettings:
                         #    print(data.get('valveUnit'),day["day"],"valve1",valve1[c]["period"])
                         #    print(data.get('valveUnit'),day["day"],"valve2",valve2[c]["period"])
                     self.schedule[vUnit] = scheduleDay
+
+    def saveConf(self, valveSettings_path='valveSettings.json', scheduleSettings_path='scheduleSettings.json'):
+        if os.path.exists(valveSettings_path):
+            vs = {
+                "data": [
+                    {"controllerMac": mac, "valveUnits": self.valveUnits[mac]}
+                    for mac in self.controllerMac
+                ]
+            }
+            with open(valveSettings_path, 'w') as f:
+                json.dump(vs, f, indent=4)
+        if os.path.exists(scheduleSettings_path):
+            ss = {"data": []}
+            for vUnit, scheduleDay in self.schedule.items():
+                schedule_list = []
+                for d, valves in scheduleDay.items():
+                    schedule_list.append({
+                        "day": d,
+                        "valve1": valves[0],
+                        "valve2": valves[1],
+                        "valve3": valves[2],
+                        "valve4": valves[3]
+                    })
+
+                ss["data"].append({
+                    "valveUnit": vUnit,
+                    "schedule": schedule_list
+                })
+
+            # Save the reconstructed data to the JSON file
+            with open(scheduleSettings_path, 'w') as f:
+                json.dump(ss, f, indent=4)
 
 valveSettings = valveSettings()
 
