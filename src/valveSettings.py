@@ -3,14 +3,13 @@ import os
 import logging
 
 class valveSettings:
-    #def __init__(self, valveSettings_path='valveSettings.json', scheduleSettings_path='scheduleSettings.json'):
-    def __init__(self):
+    def __init__(self, valveSettings_path='valveSettings.json', scheduleSettings_path='scheduleSettings.json'):
         self.controllerMac = []
         self.valveUnits = {}
         self.schedule = {}
-        self.load()
+        self.loadConf(valveSettings_path, scheduleSettings_path)
 
-    def load(self, valveSettings_path='valveSettings.json', scheduleSettings_path='scheduleSettings.json'):
+    def loadConf(self, valveSettings_path='valveSettings.json', scheduleSettings_path='scheduleSettings.json'):
         if os.path.exists(valveSettings_path):
             with (open(valveSettings_path, 'r') as f):
                 vs = json.load(f)
@@ -36,7 +35,7 @@ class valveSettings:
                         #    print(data.get('valveUnit'),day["day"],"valve2",valve2[c]["period"])
                     self.schedule[vUnit] = scheduleDay
 
-    def save(self, valveSettings_path='valveSettings.json', scheduleSettings_path='scheduleSettings.json'):
+    def saveConf(self, valveSettings_path='valveSettings.json', scheduleSettings_path='scheduleSettings.json'):
         if os.path.exists(valveSettings_path):
             vs = {
                 "data": [
