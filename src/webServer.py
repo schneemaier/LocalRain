@@ -260,6 +260,13 @@ async def msg_sched_day(day, channel):
                     struct.pack_into('<H', buffer, 0 + unit * 154 + 4 + v * 38 +c * 6, sto)
                     struct.pack_into('<H', buffer, 0 + unit * 154 + 6 + v * 38 +c * 6, eon)
                     struct.pack_into('<H', buffer, 0 + unit * 154 + 7 + v * 38 +c * 6, eof)
+                # add auto water sensor
+                try:
+                    sensor = int(valveSettings.sensor[vUnit][v])
+                except:
+                    sensor = 0
+                struct.pack_into('<H', buffer, 0 + unit * 154 + 2 + v * 38 + 37, sensor)
+
             unit += 1
     b64_data = base64.b64encode(buffer).decode('utf-8').replace("-", "+")
     #logger.info(f"String: {buffer.hex(' ')}")
