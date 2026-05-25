@@ -421,7 +421,7 @@ async def handle_submit(request):
         sm[remote_id] += 1
         return web.Response(text='OK')
 
-    if sm[remote_id] == 8:timestamp_loop
+    if sm[remote_id] == 8:
         await msg_rev_req(remote_id)
         sm[remote_id] += 1
         return web.Response(text='OK')
