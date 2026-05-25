@@ -313,13 +313,13 @@ async def msg_connection_established(ws):
 
 async def check_timeout(remote_id):
     #need addition to enable multi controller
-    global time_stamp, remote_stamp, reported_valves
+    global time_stamp, remote_stamp, reported_valves, battery_percent, connection_state
     #time_stamp += 1
     now = datetime.now()
     minutes_of_day = now.hour * 60 + now.minute
     time_stamp[remote_id] = int(minutes_of_day)
     # logger.debug(f"Watchdog: {remote_id} time:{time_stamp[remote_id]}/{remote_stamp[remote_id]} {int(time_stamp[remote_id]/60)}:{time_stamp[remote_id]-60*int(time_stamp[remote_id]/60)}")
-    pretxt = f"Watchdog: {remote_id} time:{time_stamp[remote_id]}/{remote_stamp[remote_id]} "
+    pretxt = f"Watchdog: {remote_id} {time_stamp[remote_id]}/{remote_stamp[remote_id]} "
     prehr = f" {int(time_stamp[remote_id]/60)}:"[-3:]
     premn = f"{100+time_stamp[remote_id]-60*int(time_stamp[remote_id]/60)}"[-2:]
     pretxt = pretxt + prehr + premn
@@ -337,7 +337,7 @@ async def check_timeout(remote_id):
                 else:
                     dbg += f"V{i}:OFF "
             # logger.debug(f"{remote_id} VALVES {dbg}")
-            logger.debug(f"{pretxt} VALVES {dbg}")
+            logger.debug(f"{pretxt} VALVES {dbg} {battery_percent[vid].0f}% {connection_state[vid]}")
     except Exception as e:
         logger.error(f"Error in watchdog loop: {e}")
 
