@@ -314,7 +314,10 @@ async def check_timeout(remote_id):
     minutes_of_day = now.hour * 60 + now.minute
     time_stamp[remote_id] = int(minutes_of_day)
     # logger.debug(f"Watchdog: {remote_id} time:{time_stamp[remote_id]}/{remote_stamp[remote_id]} {int(time_stamp[remote_id]/60)}:{time_stamp[remote_id]-60*int(time_stamp[remote_id]/60)}")
-    pretxt = f"Watchdog: {remote_id} time:{time_stamp[remote_id]}/{remote_stamp[remote_id]} {int(time_stamp[remote_id]/60)}:{100+time_stamp[remote_id]-60*int(time_stamp[remote_id]/60)}"[-2:]
+    pretxt = f"Watchdog: {remote_id} time:{time_stamp[remote_id]}/{remote_stamp[remote_id]} "
+    prehr = f" {int(time_stamp[remote_id]/60)}:"[-3:]
+    premn = f"{100+time_stamp[remote_id]-60*int(time_stamp[remote_id]/60)}"[-2:]
+    pretxt = pretxt + prehr + premn
     valves = reported_valves[remote_id]
     try:
         for vid in valves:

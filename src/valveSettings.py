@@ -16,7 +16,6 @@ class valveSettings:
                 for data in vs.get('data'):
                     self.controllerMac.append(data.get('controllerMac'))
                     self.valveUnits[data.get('controllerMac')] = data.get('valveUnits')
-                print(self.valveUnits)
         if os.path.exists(scheduleSettings_path):
             with ((open(scheduleSettings_path, 'r')) as f):
                 ss = json.load(f)
