@@ -7,6 +7,7 @@ class valveSettings:
         self.controllerMac = []
         self.valveUnits = {}
         self.schedule = {}
+        self.sensor = {}
         self.loadConf(valveSettings_path, scheduleSettings_path)
 
     def loadConf(self, valveSettings_path='valveSettings.json', scheduleSettings_path='scheduleSettings.json'):
@@ -22,6 +23,11 @@ class valveSettings:
                 for data in ss.get('data'):
                     vUnit = data.get('valveUnit')
                     scheduleDay = {}
+                    valve1sensor = data.get('valve1sensor')
+                    valve2sensor = data.get('valve2sensor')
+                    valve3sensor = data.get('valve3sensor')
+                    valve4sensor = data.get('valve4sensor')
+                    self.sensor[vUnit] = [valve1sensor, valve2sensor, valve3sensor, valve4sensor]
                     for day in data.get('schedule'):
                         d = day["day"]
                         valve1 = day["valve1"]
@@ -46,7 +52,7 @@ class valveSettings:
                 json.dump(vs, f, indent=4)
         if os.path.exists(scheduleSettings_path):
             ss = {"data": []}
-            for vUnit, scheduleDay in self.schedule.items():
+            for vUnit, sensor, scheduleDay in self.schedule.items():
                 schedule_list = []
                 for d, valves in scheduleDay.items():
                     schedule_list.append({
@@ -56,9 +62,12 @@ class valveSettings:
                         "valve3": valves[2],
                         "valve4": valves[3]
                     })
-
                 ss["data"].append({
                     "valveUnit": vUnit,
+                    "valve1sensor": sensor[0],
+                    "valve2sensor": sensor[1],
+                    "valve3sensor": sensor[2],
+                    "valve4sensor": sensor[3],
                     "schedule": schedule_list
                 })
 
