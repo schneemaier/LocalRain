@@ -265,8 +265,9 @@ async def msg_sched_day(day, channel):
                 try:
                     sensor = int(valveSettings.sensor[vUnit][v])
                 except:
+                    logger.debug(f"Sensor data missing")
                     sensor = 0
-                buffer[0 + unit * 154 + 2 + v * 38 + 37] = bytes([sensor])
+                buffer[0 + unit * 154 + 2 + v * 38 + 37] = sensor
 
             unit += 1
     b64_data = base64.b64encode(buffer).decode('utf-8').replace("-", "+")
