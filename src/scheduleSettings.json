@@ -1264,10 +1264,10 @@
     },
     {
       "valveUnit": "B510",
-      "valve1sensor": 0,
-      "valve2sensor": 0,
-      "valve3sensor": 0,
-      "valve4sensor": 0,
+      "valve1sensor": 1,
+      "valve2sensor": 1,
+      "valve3sensor": 1,
+      "valve4sensor": 1,
       "schedule": [
         {
           "day": 0,
