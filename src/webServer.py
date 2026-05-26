@@ -339,7 +339,7 @@ async def check_timeout(remote_id):
                 else:
                     dbg += f"V{i}:OFF "
             # logger.debug(f"{remote_id} VALVES {dbg}")
-            logger.debug(f"{pretxt} {dbg} {battery_percent[vid]}") # :.0f}% {connection_state[vid]}")
+            logger.debug(f"{pretxt} {dbg} {battery_percent[remote_id][vid]}") # :.0f}% {connection_state[remote_id][vid]}")
     except Exception as e:
         logger.error(f"Error in watchdog loop: {e}")
 
