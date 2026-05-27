@@ -136,6 +136,7 @@ Server -> Client (over websocket)
 base64 decode to hex
 zwED -> cf 01 03
 
+03     -> Thursday
 01 cf  -> 463 minutes since the start of day
 
 Software version
@@ -174,7 +175,7 @@ base64url decode
 d7 13 ae 39 80 d8 03 00 d0 01 2d dd 00 ff 00 02 00 00 00 00 00 02
 [---<RfSerial>--][DW][?][-MM-][Val1][BB][BA][ST][Val2][BB][BA][ST]
 
-DW: Day of week (0 sunday, sathurday 6)
+DW: Day of week (0 Monday, Sunday 6)
 Valx: Valve Id (ex: DD2D under the Valve)
 MM: minutes since the start of the day ex: d0 01 -> 01 d0 -> 464 7h44
 BB: binary mask (0x1 button 1, 0x2 button 2, 0x4 button 3, 0x8 button 4) (0x11 web valve 1, 0x22 web valve 2, 0x44 web valve 3, 0x88 valve 4)
