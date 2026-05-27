@@ -29,6 +29,7 @@ reported_valves = {}
 time_stamp = {}
 remote_stamp = {}
 connection_state = {}
+sensor_state = {}
 battery_percent = {}
 sm = {}
 iv = {}
@@ -69,10 +70,11 @@ online = {} #Map channel (MAC) to status
 # --- Helper Functions ---
 
 def update_states(bin_state, remote_id):
-    global remote_stamp, time_stamp, battery_percent, connection_state, reported_valves
+    global remote_stamp, time_stamp, battery_percent, connection_state, reported_valves, sensor_state
     valves = {}
     battery = {}
     connection = {}
+    sensor = {}
     button = [0] * 2
     unit = []
 
@@ -82,17 +84,20 @@ def update_states(bin_state, remote_id):
     unit.append(hex(bin_state[bin_fields['UNIT_ID_HIGH_2']])[2:] + hex(bin_state[bin_fields['UNIT_ID_LOW_2']])[2:])
     battery1 = bin_state[bin_fields['BATTERY_1']]
     battery2 = bin_state[bin_fields['BATTERY_2']]
-    # add watersensor data
+
     if int(unit[0],16) != 0:
         battery[unit[0]] = battery1 * 1.4428 - 268
         connection[unit[0]] = bin_state[bin_fields['STATE_1']]
         button[0] = bin_state[bin_fields['BUTTONS_1']]
+        sensor[unit[0]] = bin_state[bin_fields['WATER_SENSOR_1']]
     if int(unit[1], 16) != 0:
         battery[unit[1]] = battery2 * 1.4428 - 268
         connection[unit[1]] = bin_state[bin_fields['STATE_2']]
         button[1] = bin_state[bin_fields['BUTTONS_2']]
+        sensor[unit[1]] = bin_state[bin_fields['WATER_SENSOR_2']]
     battery_percent[remote_id] = battery
     connection_state[remote_id] = connection
+    sensor_state[remote_id] = sensor
     for b in range(2):
         if int(unit[b], 16) != 0:
             valve = [0] * 8
@@ -339,7 +344,7 @@ async def check_timeout(remote_id):
                 else:
                     dbg += f"V{i}:OFF "
             # logger.debug(f"{remote_id} VALVES {dbg}")
-            logger.debug(f"{pretxt} {dbg} {battery_percent[remote_id][vid]:.0f}% {connection_state[remote_id][vid]}")
+            logger.debug(f"{pretxt} {dbg} {battery_percent[remote_id][vid]:.0f}% {connection_state[remote_id][vid]} {sensor_state[remote_id][vid]}")
     except Exception as e:
         logger.error(f"Error in watchdog loop: {e}")
 
