@@ -596,11 +596,10 @@ async def all_watchdog_loop():
     global time_stamp
     logger.info(f'Global watchdog loop starting')
     while True:
-        logger.info("Global watchdog loop")
         await asyncio.sleep(60)
+        logger.debug("Global watchdog loop")
         if len(time_stamp) != 0:
             for key in time_stamp:
-                # logger.info(f'Global watchdog loop {key}')
                 await check_timeout(key)
 
 async def watchdog_loop(remote_id):
