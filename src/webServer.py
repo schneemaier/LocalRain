@@ -326,12 +326,12 @@ async def check_timeout(remote_id):
     minutes_of_day = now.hour * 60 + now.minute
     time_stamp[remote_id] = int(minutes_of_day)
     # logger.debug(f"Watchdog: {remote_id} time:{time_stamp[remote_id]}/{remote_stamp[remote_id]} {int(time_stamp[remote_id]/60)}:{time_stamp[remote_id]-60*int(time_stamp[remote_id]/60)}")
-    pretxt = f"Watchdog: {remote_id} {time_stamp[remote_id]}/{remote_stamp[remote_id]} "
-    prehr = f" {int(time_stamp[remote_id]/60)}:"[-3:]
-    premn = f"{100+time_stamp[remote_id]-60*int(time_stamp[remote_id]/60)}"[-2:]
-    pretxt = pretxt + prehr + premn
-    valves = reported_valves[remote_id]
     try:
+        pretxt = f"Watchdog: {remote_id} {time_stamp[remote_id]}/{remote_stamp[remote_id]} "
+        prehr = f" {int(time_stamp[remote_id]/60)}:"[-3:]
+        premn = f"{100+time_stamp[remote_id]-60*int(time_stamp[remote_id]/60)}"[-2:]
+        pretxt = pretxt + prehr + premn
+        valves = reported_valves[remote_id]
         for vid in valves:
             dbg = ''
             dbg = vid + ": "
@@ -597,7 +597,7 @@ async def all_watchdog_loop():
     logger.info(f'Global watchdog loop starting')
     while True:
         await asyncio.sleep(60)
-        logger.debug("Global watchdog loop")
+        logger.debug(f'Global watchdog loop')
         if len(time_stamp) != 0:
             for key in time_stamp:
                 await check_timeout(key)
@@ -610,8 +610,8 @@ async def watchdog_loop(remote_id):
 def setup_routes(app):
     app.router.add_get('/', index)
     # Check if web directory exists
-    if os.path.exists('./web'):
-         app.router.add_static('/WEB/', path='./web/', name='web')
+    if os.path.exists(settings.webdir):
+         app.router.add_static('/WEB/', path=settings.webdir, name='web')
     else:
          logger.warning("Web directory not found. Static files will not be served.")
 
