@@ -419,7 +419,7 @@ async def handle_submit(request):
         return web.Response(text='OK')
 
     # State Machine
-    # change state macine to dictionary to make it remote id dependent
+    # change state machine to dictionary to make it remote id dependent
 
     if sm[remote_id] < 7:
         await msg_sched_day(sm[remote_id], remote_id)
@@ -475,7 +475,6 @@ async def handle_submit(request):
         return web.Response(text='OK')
 
     if remote_id in valveSettings.controllerMac:
-        logger.debug(f'remoteID ({remote_id}) in controllerMac')
         update_states(bin_state, remote_id) # update to multi device
         # this part does not make sense in current form
         connection = connection_state[remote_id]
@@ -487,6 +486,7 @@ async def handle_submit(request):
             else:
                 logger.info(f'Valve {con} offline with controller ({remote_id})')
     elif remote_id == '000000000000':
+        logger.debug(f'remoteID ({remote_id}) NOT in controllerMac')
         pass
     else:
         # online[remote_id] = True 1
