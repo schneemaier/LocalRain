@@ -6,6 +6,10 @@
       "valve2sensor": 0,
       "valve3sensor": 0,
       "valve4sensor": 0,
+      "valve1raindelay": "1970-01-01",
+      "valve2raindelay": "1970-01-01",
+      "valve3raindelay": "1970-01-01",
+      "valve4raindelay": "1970-01-01",
       "schedule": [
         {
           "day": 0,
@@ -1268,6 +1272,10 @@
       "valve2sensor": 1,
       "valve3sensor": 1,
       "valve4sensor": 1,
+      "valve1raindelay": "1970-01-01",
+      "valve2raindelay": "1970-01-01",
+      "valve3raindelay": "1970-01-01",
+      "valve4raindelay": "1970-01-01",
       "schedule": [
         {
           "day": 0,
@@ -2530,6 +2538,10 @@
       "valve2sensor": 0,
       "valve3sensor": 0,
       "valve4sensor": 0,
+      "valve1raindelay": "1970-01-01",
+      "valve2raindelay": "1970-01-01",
+      "valve3raindelay": "1970-01-01",
+      "valve4raindelay": "1970-01-01",
       "schedule": [
         {
           "day": 0,
@@ -3792,6 +3804,10 @@
       "valve2sensor": 0,
       "valve3sensor": 0,
       "valve4sensor": 0,
+      "valve1raindelay": "1970-01-01",
+      "valve2raindelay": "1970-01-01",
+      "valve3raindelay": "1970-01-01",
+      "valve4raindelay": "1970-01-01",
       "schedule": [
         {
           "day": 0,
