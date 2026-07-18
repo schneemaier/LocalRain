@@ -1,6 +1,7 @@
 import json
 import os
 import logging
+from datetime import datetime
 
 class valveSettings:
     def __init__(self, valveSettings_path='valveSettings.json', scheduleSettings_path='scheduleSettings.json'):
@@ -33,7 +34,7 @@ class valveSettings:
                     valve2raindelay = datetime.fromisoformat(data.get('valve2raindelay', '1970-01-01'))
                     valve3raindelay = datetime.fromisoformat(data.get('valve3raindelay', '1970-01-01'))
                     valve4raindelay = datetime.fromisoformat(data.get('valve4raindelay', '1970-01-01'))
-                    self.raindelay[vUnit] = {valve1raindelay, valve2raindelay, valve3raindelay, valve4raindelay}
+                    self.raindelay[vUnit] = [valve1raindelay, valve2raindelay, valve3raindelay, valve4raindelay]
                     for day in data.get('schedule'):
                         d = day["day"]
                         valve1 = day["valve1"]
@@ -58,7 +59,7 @@ class valveSettings:
                 json.dump(vs, f, indent=4)
         if os.path.exists(scheduleSettings_path):
             ss = {"data": []}
-            for vUnit, sensor, scheduleDay in self.schedule.items():
+            for vUnit, scheduleDay in self.schedule.items():
                 schedule_list = []
                 for d, valves in scheduleDay.items():
                     schedule_list.append({
@@ -68,16 +69,18 @@ class valveSettings:
                         "valve3": valves[2],
                         "valve4": valves[3]
                     })
+                sensor = self.sensor.get(vUnit, [0, 0, 0, 0])
+                raindelay = self.raindelay.get(vUnit, [datetime.fromisoformat('1970-01-01')] * 4)
                 ss["data"].append({
                     "valveUnit": vUnit,
                     "valve1sensor": sensor[0],
                     "valve2sensor": sensor[1],
                     "valve3sensor": sensor[2],
                     "valve4sensor": sensor[3],
-                    "valve1raindelay" = raindelay[0].isoformat(),
-                    "valve2raindelay" = raindelay[1].isoformat(),
-                    "valve3raindelay" = raindelay[2].isoformat(),
-                    "valve4raindelay" = raindelay[3].isoformat(),
+                    "valve1raindelay": raindelay[0].isoformat(),
+                    "valve2raindelay": raindelay[1].isoformat(),
+                    "valve3raindelay": raindelay[2].isoformat(),
+                    "valve4raindelay": raindelay[3].isoformat(),
                     "schedule": schedule_list
                 })
 
@@ -92,4 +95,4 @@ if __name__ == "__main__":
     print(valveSettings.controllerMac)
     print(valveSettings.valveUnits)
     print(valveSettings.schedule)
-    print(valveSettings.schedule["DE2B"][0][3][2]["start"])
+    # print(valveSettings.schedule["DE2B"][0][3][2]["start"])

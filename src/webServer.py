@@ -354,8 +354,74 @@ async def index(request):
     return web.FileResponse('./web/index.html')
 
 async def handle_rest(request):
+    try:
+        if request.method == "GET":
+            action = request.query.get("action")
+            if action == "valveControllers":
+                return web.json_response({"status": "OK", "data": valveSettings.controllerMac})
+            elif action == "valveUnits":
+                controller_id = request.query.get("controller_id")
+                if not controller_id:
+                    return web.json_response({"status": "ERROR", "msg": "Missing controller_id"}, status=400)
+                units = valveSettings.valveUnits.get(controller_id, [])
+                return web.json_response({"status": "OK", "data": units})
+            elif action == "valveSchedule":
+                valve_unit_id = request.query.get("valve_unit_id")
+                if not valve_unit_id:
+                    return web.json_response({"status": "ERROR", "msg": "Missing valve_unit_id"}, status=400)
 
-    return web.json_response({"status": "OK", "msg": "TEST"})
+                schedule = valveSettings.schedule.get(valve_unit_id, {})
+                sensor = valveSettings.sensor.get(valve_unit_id, [0, 0, 0, 0])
+                raindelays = valveSettings.raindelay.get(valve_unit_id, [datetime.fromisoformat('1970-01-01')] * 4)
+                raindelays_iso = [r.isoformat() for r in raindelays]
+
+                return web.json_response({
+                    "status": "OK",
+                    "data": {
+                        "schedule": schedule,
+                        "sensor": sensor,
+                        "raindelay": raindelays_iso
+                    }
+                })
+            else:
+                return web.json_response({"status": "ERROR", "msg": "Unknown action"}, status=400)
+
+        elif request.method == "POST":
+            data = await request.json()
+            action = data.get("action")
+
+            if action == "valveControllers":
+                valveSettings.controllerMac = data.get("controllers", [])
+                valveSettings.saveConf()
+                return web.json_response({"status": "OK"})
+            elif action == "valveUnits":
+                controller_id = data.get("controller_id")
+                units = data.get("valveUnits", [])
+                if not controller_id:
+                    return web.json_response({"status": "ERROR", "msg": "Missing controller_id"}, status=400)
+                valveSettings.valveUnits[controller_id] = units
+                if controller_id not in valveSettings.controllerMac:
+                    valveSettings.controllerMac.append(controller_id)
+                valveSettings.saveConf()
+                return web.json_response({"status": "OK"})
+            elif action == "valveSchedule":
+                valve_unit_id = data.get("valve_unit_id")
+                if not valve_unit_id:
+                    return web.json_response({"status": "ERROR", "msg": "Missing valve_unit_id"}, status=400)
+
+                valveSettings.schedule[valve_unit_id] = data.get("schedule", {})
+                valveSettings.sensor[valve_unit_id] = data.get("sensor", [0, 0, 0, 0])
+                raindelays_iso = data.get("raindelay", ["1970-01-01T00:00:00"] * 4)
+                valveSettings.raindelay[valve_unit_id] = [datetime.fromisoformat(r) for r in raindelays_iso]
+
+                valveSettings.saveConf()
+                return web.json_response({"status": "OK"})
+            else:
+                return web.json_response({"status": "ERROR", "msg": "Unknown action"}, status=400)
+
+    except Exception as e:
+        logger.error(f"Error handling REST API request: {e}")
+        return web.json_response({"status": "ERROR", "msg": str(e)}, status=500)
 
 async def handle_submit(request):
     global online, sm, iv, tv, time_stamp, remote_stamp
@@ -615,7 +681,7 @@ def setup_routes(app):
     else:
          logger.warning("Web directory not found. Static files will not be served.")
 
-    app.router.add_get('/REST', handle_rest)
+    app.router.add_route('*', '/REST', handle_rest)
     app.router.add_get('/submit/', handle_submit)
 
     # Consolidated handler for /app/{key}
