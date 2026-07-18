@@ -1,4 +1,5 @@
 {
+	"webdir": "./src",
 	"port": 80,
 	"loglevel": "debug"
 }

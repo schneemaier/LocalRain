@@ -6,10 +6,12 @@ class Settings:
     def __init__(self, settings_path='settings.json'):
         self.port = 80
         self.loglevel = "DEBUG"
+        self.webdir = "./src"
 
         if os.path.exists(settings_path):
             with (open(settings_path, 'r') as f):
                 data = json.load(f)
+                self.webdir = data.get('webdir', self.webdir)
                 self.port = data.get('port', self.port)
                 self.loglevel = data.get('loglevel', self.loglevel).upper()
 

@@ -7,6 +7,8 @@ class valveSettings:
         self.controllerMac = []
         self.valveUnits = {}
         self.schedule = {}
+        self.sensor = {}
+        self.raindelay = {}
         self.loadConf(valveSettings_path, scheduleSettings_path)
 
     def loadConf(self, valveSettings_path='valveSettings.json', scheduleSettings_path='scheduleSettings.json'):
@@ -22,6 +24,16 @@ class valveSettings:
                 for data in ss.get('data'):
                     vUnit = data.get('valveUnit')
                     scheduleDay = {}
+                    valve1sensor = data.get('valve1sensor',0)
+                    valve2sensor = data.get('valve2sensor',0)
+                    valve3sensor = data.get('valve3sensor',0)
+                    valve4sensor = data.get('valve4sensor',0)
+                    self.sensor[vUnit] = [valve1sensor, valve2sensor, valve3sensor, valve4sensor]
+                    valve1raindelay = datetime.fromisoformat(data.get('valve1raindelay','1970-01-01'))
+                    valve2raindelay = datetime.fromisoformat(data.get('valve2raindelay', '1970-01-01'))
+                    valve3raindelay = datetime.fromisoformat(data.get('valve3raindelay', '1970-01-01'))
+                    valve4raindelay = datetime.fromisoformat(data.get('valve4raindelay', '1970-01-01'))
+                    self.raindelay[vUnit] = {valve1raindelay, valve2raindelay, valve3raindelay, valve4raindelay}
                     for day in data.get('schedule'):
                         d = day["day"]
                         valve1 = day["valve1"]
@@ -46,7 +58,7 @@ class valveSettings:
                 json.dump(vs, f, indent=4)
         if os.path.exists(scheduleSettings_path):
             ss = {"data": []}
-            for vUnit, scheduleDay in self.schedule.items():
+            for vUnit, sensor, scheduleDay in self.schedule.items():
                 schedule_list = []
                 for d, valves in scheduleDay.items():
                     schedule_list.append({
@@ -56,9 +68,16 @@ class valveSettings:
                         "valve3": valves[2],
                         "valve4": valves[3]
                     })
-
                 ss["data"].append({
                     "valveUnit": vUnit,
+                    "valve1sensor": sensor[0],
+                    "valve2sensor": sensor[1],
+                    "valve3sensor": sensor[2],
+                    "valve4sensor": sensor[3],
+                    "valve1raindelay" = raindelay[0].isoformat(),
+                    "valve2raindelay" = raindelay[1].isoformat(),
+                    "valve3raindelay" = raindelay[2].isoformat(),
+                    "valve4raindelay" = raindelay[3].isoformat(),
                     "schedule": schedule_list
                 })
 

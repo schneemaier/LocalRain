@@ -29,6 +29,7 @@ reported_valves = {}
 time_stamp = {}
 remote_stamp = {}
 connection_state = {}
+sensor_state = {}
 battery_percent = {}
 sm = {}
 iv = {}
@@ -69,10 +70,11 @@ online = {} #Map channel (MAC) to status
 # --- Helper Functions ---
 
 def update_states(bin_state, remote_id):
-    global remote_stamp, time_stamp, battery_percent, connection_state, reported_valves
+    global remote_stamp, time_stamp, battery_percent, connection_state, reported_valves, sensor_state
     valves = {}
     battery = {}
     connection = {}
+    sensor = {}
     button = [0] * 2
     unit = []
 
@@ -82,21 +84,25 @@ def update_states(bin_state, remote_id):
     unit.append(hex(bin_state[bin_fields['UNIT_ID_HIGH_2']])[2:] + hex(bin_state[bin_fields['UNIT_ID_LOW_2']])[2:])
     battery1 = bin_state[bin_fields['BATTERY_1']]
     battery2 = bin_state[bin_fields['BATTERY_2']]
+
     if int(unit[0],16) != 0:
         battery[unit[0]] = battery1 * 1.4428 - 268
         connection[unit[0]] = bin_state[bin_fields['STATE_1']]
         button[0] = bin_state[bin_fields['BUTTONS_1']]
+        sensor[unit[0]] = bin_state[bin_fields['WATER_SENSOR_1']]
     if int(unit[1], 16) != 0:
         battery[unit[1]] = battery2 * 1.4428 - 268
         connection[unit[1]] = bin_state[bin_fields['STATE_2']]
         button[1] = bin_state[bin_fields['BUTTONS_2']]
+        sensor[unit[1]] = bin_state[bin_fields['WATER_SENSOR_2']]
     battery_percent[remote_id] = battery
     connection_state[remote_id] = connection
+    sensor_state[remote_id] = sensor
     for b in range(2):
         if int(unit[b], 16) != 0:
             valve = [0] * 8
             for i in range(8):
-                if remote_id in reported_valves:
+                if remote_id in reported_valves and unit[b] in reported_valves[remote_id]:
                     if reported_valves[remote_id][unit[b]][i] == 0 and (button[b] >> i) & 1:
                         valve[i] = 60
                     elif not (button[b] >> i) & 1:
@@ -189,9 +195,7 @@ async def send_long_message(event, data, channel_id=None):
 
 async def msg_manual_sched(channel_arg, mode, valveUnit = None, valve = None, time = None):
     global time_stamp, reported_valves
-    logger.info(f"Manual schedule for {channel_arg} valveUnit {valveUnit} valve {valve} time {time}")
     dbg = ''
-
     buffer = bytearray(20)
 
     if mode == "start":
@@ -262,10 +266,18 @@ async def msg_sched_day(day, channel):
                     struct.pack_into('<H', buffer, 0 + unit * 154 + 4 + v * 38 +c * 6, sto)
                     struct.pack_into('<H', buffer, 0 + unit * 154 + 6 + v * 38 +c * 6, eon)
                     struct.pack_into('<H', buffer, 0 + unit * 154 + 7 + v * 38 +c * 6, eof)
+                # add auto water sensor
+                try:
+                    sensor = int(valveSettings.sensor[vUnit][v])
+                except:
+                    logger.debug(f"Sensor data missing")
+                    sensor = 0
+                buffer[0 + unit * 154 + 2 + v * 38 + 37] = sensor
+
             unit += 1
     b64_data = base64.b64encode(buffer).decode('utf-8').replace("-", "+")
-    #logger.info(f"String: {buffer.hex(' ')}")
-    #logger.info(f"Base64 string: {b64_data}")
+    logger.debug(f"String: {buffer.hex(' ')}")
+    logger.debug(f"Base64 string: {b64_data}")
     payload = json.dumps({
         'event': f"sched_day{day}",
         'data': b64_data,
@@ -308,18 +320,18 @@ async def msg_connection_established(ws):
 
 async def check_timeout(remote_id):
     #need addition to enable multi controller
-    global time_stamp, remote_stamp, reported_valves
+    global time_stamp, remote_stamp, reported_valves, battery_percent, connection_state
     #time_stamp += 1
     now = datetime.now()
     minutes_of_day = now.hour * 60 + now.minute
     time_stamp[remote_id] = int(minutes_of_day)
     # logger.debug(f"Watchdog: {remote_id} time:{time_stamp[remote_id]}/{remote_stamp[remote_id]} {int(time_stamp[remote_id]/60)}:{time_stamp[remote_id]-60*int(time_stamp[remote_id]/60)}")
-    pretxt = f"Watchdog: {remote_id} time:{time_stamp[remote_id]}/{remote_stamp[remote_id]} "
-    prehr = f" {int(time_stamp[remote_id]/60)}:"[-3:]
-    premn = f"{100+time_stamp[remote_id]-60*int(time_stamp[remote_id]/60)}"[-2:]
-    pretxt = pretxt + prehr + premn
-    valves = reported_valves[remote_id]
     try:
+        pretxt = f"Watchdog: {remote_id} {time_stamp[remote_id]}/{remote_stamp[remote_id]} "
+        prehr = f" {int(time_stamp[remote_id]/60)}:"[-3:]
+        premn = f"{100+time_stamp[remote_id]-60*int(time_stamp[remote_id]/60)}"[-2:]
+        pretxt = pretxt + prehr + premn
+        valves = reported_valves[remote_id]
         for vid in valves:
             dbg = ''
             dbg = vid + ": "
@@ -332,7 +344,7 @@ async def check_timeout(remote_id):
                 else:
                     dbg += f"V{i}:OFF "
             # logger.debug(f"{remote_id} VALVES {dbg}")
-            logger.debug(f"{pretxt} VALVES {dbg}")
+            logger.debug(f"{pretxt} {dbg} {battery_percent[remote_id][vid]:.0f}% {connection_state[remote_id][vid]} {hex(sensor_state[remote_id][vid])}")
     except Exception as e:
         logger.error(f"Error in watchdog loop: {e}")
 
@@ -407,7 +419,7 @@ async def handle_submit(request):
         return web.Response(text='OK')
 
     # State Machine
-    # change state macine to dictionary to make it remote id dependent
+    # change state machine to dictionary to make it remote id dependent
 
     if sm[remote_id] < 7:
         await msg_sched_day(sm[remote_id], remote_id)
@@ -463,7 +475,6 @@ async def handle_submit(request):
         return web.Response(text='OK')
 
     if remote_id in valveSettings.controllerMac:
-        logger.debug(f'remoteID ({remote_id}) in controllerMac')
         update_states(bin_state, remote_id) # update to multi device
         # this part does not make sense in current form
         connection = connection_state[remote_id]
@@ -475,6 +486,7 @@ async def handle_submit(request):
             else:
                 logger.info(f'Valve {con} offline with controller ({remote_id})')
     elif remote_id == '000000000000':
+        logger.debug(f'remoteID ({remote_id}) NOT in controllerMac')
         pass
     else:
         # online[remote_id] = True 1
@@ -556,7 +568,7 @@ async def all_timestamp_loop():
         now = datetime.now()
         minutes_of_day = now.hour * 60 + now.minute
         if len(time_stamp) != 0:
-            sleeptime = 1800
+            sleeptime = 7200
            # logger.info(f'Sending timestamps')
             for key in channels:
                 time_stamp[key] = minutes_of_day
@@ -584,11 +596,10 @@ async def all_watchdog_loop():
     global time_stamp
     logger.info(f'Global watchdog loop starting')
     while True:
-        logger.info("Global watchdog loop")
         await asyncio.sleep(60)
+        logger.debug(f'Global watchdog loop')
         if len(time_stamp) != 0:
             for key in time_stamp:
-                # logger.info(f'Global watchdog loop {key}')
                 await check_timeout(key)
 
 async def watchdog_loop(remote_id):
@@ -599,8 +610,8 @@ async def watchdog_loop(remote_id):
 def setup_routes(app):
     app.router.add_get('/', index)
     # Check if web directory exists
-    if os.path.exists('./web'):
-         app.router.add_static('/WEB/', path='./web/', name='web')
+    if os.path.exists(settings.webdir):
+         app.router.add_static('/WEB/', path=settings.webdir, name='web')
     else:
          logger.warning("Web directory not found. Static files will not be served.")
 
