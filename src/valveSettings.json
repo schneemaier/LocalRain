@@ -10,15 +10,8 @@
     {
       "controllerMac": "5410ec28c59f",
       "valveUnits": [
-        "F623",
-        "DE2B"
-      ]
-    },
-    {
-      "controllerMac": "5410ec28ed23",
-      "valveUnits": [
-        "0000",
-        "0000"
+        "FFE5",
+        "F623"
       ]
     }
   ]
