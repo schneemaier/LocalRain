@@ -383,6 +383,17 @@ async def handle_rest(request):
                         "raindelay": raindelays_iso
                     }
                 })
+            elif action == "sendSchedule":
+                controller_id = request.query.get("controller_id")
+                if not controller_id:
+                    return web.json_response({"status": "ERROR", "msg": "Missing controller_id"}, status=400)
+                elif controller_id == "all":
+                    # send program to all controllers
+                    for ct in valveSettings.controllerMac:
+                        asyncio.create_task(send_program(ct))
+                else:
+                    asyncio.create_task(send_program(controller_id))
+                return web.json_response({"status": "OK", "data": "program send started to"})
             else:
                 return web.json_response({"status": "ERROR", "msg": "Unknown action"}, status=400)
 
@@ -643,6 +654,11 @@ async def all_timestamp_loop():
             sleeptime = 60
         # send timestamp every 30 minutes for all connected devices
         await asyncio.sleep(sleeptime - datetime.now().second)
+
+async def send_program(remote_id):
+    for schDay in range(7):
+        await msg_sched_day(schDay, remote_id)
+        await asyncio.sleep(5)
 
 async def timestamp_loop(remote_id):
     global time_stamp
